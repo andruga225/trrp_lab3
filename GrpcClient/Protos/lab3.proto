@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcClient.Protos";
+
+import "google/protobuf/timestamp.proto";
+
+package dbNormalizer;
+
+message Request{
+	string shopName = 1;
+	string shopAddress = 2;
+	string clientName = 3;
+	string clientEmail = 4;
+	string clientPhone = 5;
+	string categoryName = 6;
+	string distrName = 7;
+	int32 itemId = 8;
+	string itemName = 9;
+	int32 amount = 10;
+	double price = 11;
+	google.protobuf.Timestamp purchDate = 12;
+}
+
+message Response{
+	string result = 1;
+}
+
+service Normalizer{
+	rpc Normalize (stream Request) returns (Response);
+}
